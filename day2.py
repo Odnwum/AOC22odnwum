@@ -1,4 +1,4 @@
-def readfile(filename):
+def part1(filename):
     with open(filename, "r") as f:
         list = 0
         sum = 0
@@ -30,13 +30,51 @@ def readfile(filename):
 
             except:
                 next
-    return sum
+
+
+def part2(filename):
+    with open(filename, "r") as f:
+        list = 0
+        sum = 0
+        while list != "":
+            list = f.readline().strip()
+            ans = list.split(" ")
+            try:
+                # add contidtion
+                if ans[1] == "Y":
+                    sum += 3
+                    if ans[0] == "A":
+                        sum += 1
+                    elif ans[0] == "B":
+                        sum += 2
+                    elif ans[0] == "C":
+                        sum += 3
+                elif ans[1] == "Z":
+                    sum += 6
+
+                # add other thing
+                if ans[1] == "X" and ans[0] == "A":
+                    sum += 3
+                elif ans[1] == "X" and ans[0] == "B":
+                    sum += 1
+                elif ans[1] == "X" and ans[0] == "C":
+                    sum += 2
+                elif ans[1] == "Z" and ans[0] == "A":
+                    sum += 2
+                elif ans[1] == "Z" and ans[0] == "B":
+                    sum += 3
+                elif ans[1] == "Z" and ans[0] == "C":
+                    sum += 1
+
+            except:
+                next
+
+    print(sum)
 
 
 def main():
     filename = "day2.txt"
-    sum = readfile(filename)
-    print(sum)
+    part2(filename)
 
 
 if __name__ == "__main__":
